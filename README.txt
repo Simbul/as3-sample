@@ -1,5 +1,6 @@
 This is a sample AS3 application, meant to showcase a basic project structure, Ant build tasks and Unit tests.
 The project is based on a root class, sample.SampleApp, which will include all the other required classes and UI elements.
+The project is entirely code-based, it relies on Flex SDK to be compiled into an SWF file and thus does not require Flash Professional.
 
 
 = Compiling =
