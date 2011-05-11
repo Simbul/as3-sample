@@ -1,5 +1,6 @@
 package sample {
   import org.hamcrest.*;
+  import org.hamcrest.core.*;
   
   import sample.Calculator;
   
@@ -9,6 +10,7 @@ package sample {
     [Before]
     public function setUp() {
       this._calculator = new Calculator(5);
+      assertThat(this._calculator, isA(Calculator));
     }
 
     [After]

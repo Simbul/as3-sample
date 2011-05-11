@@ -22,6 +22,10 @@ To run the compilation/testing tasks you'll need Ant installed on your system (s
 To compile you'll need the Open Source Flex SDK: http://opensource.adobe.com/wiki/display/flexsdk/Flex+SDK. Download the ZIP file, uncompress it and move the folder to a place of your choice (e.g. ~/Developer/). There's no need to run any installer.
 To run the tests you'll need the Flash player projector content debugger: http://www.adobe.com/support/flashplayer/downloads.html.
 
+Tests are based on FlexUnit 4 and Hamcrest. Both libraries are already included in the libs/ folder. Here is where they can be found, anyway:
+- FlexUnit 4: http://www.flexunit.org/
+- Hamcrest AS3: https://github.com/drewbourne/hamcrest-as3
+
 
 = MinimalComps =
 To keep the code for this sample project lean, some pre-packaged UI components were used (buttons, text input fields).
