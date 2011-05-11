@@ -1,5 +1,5 @@
-<project name="FlexUnit4Sample" basedir="." default="compile">
-  <!-- setup a prefix for all environment variables -->
+<project name="AS3Sample" basedir="." default="compile">
+  <!-- Setup a prefix for all environment variables -->
   <property environment="env" />
 
   <!-- Setup paths for build -->
@@ -25,19 +25,20 @@
     </classpath>
   </taskdef>
 
+  <!-- Remove all directories created during the build process -->
   <target name="clean">
-    <!-- Remove all directories created during the build process -->
     <delete dir="${output.loc}" />
   </target>
 
+  <!-- Create directories needed for the build process -->
   <target name="init">
-    <!-- Create directories needed for the build process -->
     <mkdir dir="${output.loc}" />
     <mkdir dir="${bin.loc}" />
     <mkdir dir="${report.loc}" />
     <mkdir dir="${dist.loc}" />
   </target>
 
+  <!-- Compile the sources into an .swf file -->
   <target name="compile" depends="init">
     <mxmlc file="${main.package.loc}/${prj.name}.as" output="${bin.loc}/${prj.name}.swf">
       <library-path dir="${lib.loc}" append="true">
@@ -50,12 +51,11 @@
       <compiler.headless-server>true</compiler.headless-server>
       <compiler.warn-no-type-decl>false</compiler.warn-no-type-decl>
       <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
-      <use-network>true</use-network>
     </mxmlc>
   </target>
 
+  <!-- Execute FlexUnit tests and publish JUnit-style reports -->
   <target name="test" depends="compile">
-    <!-- Execute FlexUnit tests and publish reports -->
     <flexunit 
       workingDir="${bin.loc}"
       toDir="${report.loc}" 
@@ -70,7 +70,6 @@
       <library dir="${lib.loc}" />
     </flexunit>
 
-    <!-- Generate readable JUnit-style reports -->
     <junitreport todir="${report.loc}">
       <fileset dir="${report.loc}">
         <include name="TEST-*.xml" />
@@ -78,4 +77,10 @@
       <report format="frames" todir="${report.loc}/html" />
     </junitreport>
   </target>
+  
+  <!-- Create an HTML page containing the compiled SWF -->
+  <target name="html" depends="compile">
+		<copy file="${bin.loc}/${prj.name}.swf" todir="${dist.loc}" />
+		<html-wrapper swf="${prj.name}" output="${dist.loc}" height="100%" width="100%" />
+	</target>
 </project>
